@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: trident-reference/rest-api.html 
+keywords: rest api, get, post, json, object, backends 
+summary: 如果您偏好與Astra Trident的REST API互動、您可以直接使用REST端點。 
+---
+= Astra Trident REST API
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+而 link:tridentctl.html["tridentctl命令和選項"] 這是與Astra Trident REST API互動最簡單的方法、您可以視需要直接使用REST端點。
+
+
+
+== 何時使用REST API
+
+REST API適用於在非Kubernetes部署中使用Astra Trident做為獨立二進位元的進階安裝。
+
+為了提升安全性、Astra Trident `REST API` 在Pod內部執行時、預設限制為localhost。若要變更此行為、您必須設定Astra Trident的 `-address` 其Pod組態中的引數。
+
+
+
+== 使用REST API
+
+如需如何呼叫這些API的範例、請通過偵錯 (`-d`）旗標。如需詳細資訊、請參閱 link:../trident-managing-k8s/tridentctl.html["使用 Tridentctl 管理 Astra Trident"]。
+
+API的運作方式如下：
+
+
+
+=== 取得
+
+`GET <trident-address>/trident/v1/<object-type>`:: 列出該類型的所有物件。
+`GET <trident-address>/trident/v1/<object-type>/<object-name>`:: 取得命名物件的詳細資料。
+
+
+
+
+=== 貼文
+
+`POST <trident-address>/trident/v1/<object-type>`:: 建立指定類型的物件。
++
+--
+* 需要Json組態才能建立物件。如需每種物件類型的規格、請參閱 link:../trident-managing-k8s/tridentctl.html["使用 Tridentctl 管理 Astra Trident"]。
+* 如果物件已經存在、行為會有所不同：後端會更新現有物件、而其他所有物件類型都會使作業失敗。
+
+
+--
+
+
+
+
+=== 刪除
+
+`DELETE <trident-address>/trident/v1/<object-type>/<object-name>`:: 刪除命名資源。
++
+--
+
+NOTE: 與後端或儲存類別相關聯的磁碟區將繼續存在、必須分別刪除。如需詳細資訊、請參閱 link:../trident-managing-k8s/tridentctl.html["使用 Tridentctl 管理 Astra Trident"]。
+
+--
+

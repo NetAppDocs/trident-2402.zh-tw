@@ -1,0 +1,503 @@
+---
+sidebar: sidebar 
+permalink: trident-docker/stor-config.html 
+keywords: deploy, trident, docker, trident for docker, nfs, iscsi, protocol, nfs protocol, iscsi protocol, configure host, host config, storage config, options, variables, ontap, element, storage pool, cvs, cvs-performance, service type, service level, cloud volumes service, cloud volumes 
+summary: 請參閱Astra Trident組態的可用組態選項。 
+---
+= 儲存組態選項
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+請參閱Astra Trident組態的可用組態選項。
+
+
+
+== 全域組態選項
+
+這些組態選項適用於所有Astra Trident組態、無論使用何種儲存平台。
+
+[cols="3*"]
+|===
+| 選項 | 說明 | 範例 
+
+
+| `version`  a| 
+組態檔版本編號
+ a| 
+`1`
+
+
+
+| `storageDriverName`  a| 
+儲存驅動程式名稱
+ a| 
+`ontap-nas`、 `ontap-san`、 `ontap-nas-economy`、
+`ontap-nas-flexgroup`、 `solidfire-san`
+
+
+
+| `storagePrefix`  a| 
+Volume名稱的選用首碼。預設： `netappdvp_`。
+ a| 
+`staging_`
+
+
+
+| `limitVolumeSize`  a| 
+Volume大小的選擇性限制。預設： "" （未強制執行）
+ a| 
+`10g`
+
+|===
+
+TIP: 請勿使用 `storagePrefix` 元素後端的（包括預設值）。依預設 `solidfire-san` 驅動程式將忽略此設定、而不使用前置碼。我們建議使用特定的TenantId進行Docker Volume對應、或是使用Docker版本、驅動程式資訊和原始名稱填入的屬性資料、以便在可能使用任何名稱標示的情況下使用。
+
+您可以使用預設選項、避免在每個建立的Volume上指定這些選項。。 `size` 選項適用於所有控制器類型。如ONTAP 需如何設定預設Volume大小的範例、請參閱「功能區組態」一節。
+
+[cols="3*"]
+|===
+| 選項 | 說明 | 範例 
+
+
+| `size`  a| 
+新磁碟區的選用預設大小。預設： `1G`
+ a| 
+`10G`
+
+|===
+
+
+== 組態ONTAP
+
+除了上述全域組態值之外、使用ONTAP 時還提供下列頂層選項。
+
+[cols="3*"]
+|===
+| 選項 | 說明 | 範例 
+
+
+| `managementLIF`  a| 
+IP位址ONTAP ：您可以指定完整網域名稱（FQDN）。
+ a| 
+`10.0.0.1`
+
+
+
+| `dataLIF`  a| 
+傳輸協定LIF的IP位址。
+
+*《NAS驅動程式*》：建議您指定ONTAP `dataLIF`。如果未提供、Astra Trident會從SVM擷取資料lifs。您可以指定要用於NFS掛載作業的完整網域名稱（FQDN）、讓您建立循環配置資源DNS、以便在多個資料生命期之間達到負載平衡。
+
+*《SAN驅動程式*：請勿指定用於iSCSI》ONTAP 。  Astra Trident的用途 link:https://docs.netapp.com/us-en/ontap/san-admin/selective-lun-map-concept.html["可選擇的LUN對應ONTAP"^] 探索建立多重路徑工作階段所需的iSCI LIF。如果發生此情況、將會產生警告 `dataLIF` 已明確定義。
+ a| 
+`10.0.0.2`
+
+
+
+| `svm`  a| 
+要使用的儲存虛擬機器（如果管理LIF是叢集LIF、則為必要）
+ a| 
+`svm_nfs`
+
+
+
+| `username`  a| 
+連線至儲存設備的使用者名稱
+ a| 
+`vsadmin`
+
+
+
+| `password`  a| 
+連線至儲存設備的密碼
+ a| 
+`secret`
+
+
+
+| `aggregate`  a| 
+用於資源配置的Aggregate（選用；如果已設定、則必須指派給SVM）。適用於 `ontap-nas-flexgroup` 驅動程式、此選項會被忽略。指派給SVM的所有集合體均可用來配置FlexGroup 一個SVolume。
+ a| 
+`aggr1`
+
+
+
+| `limitAggregateUsage`  a| 
+如果使用率高於此百分比、則可選用、失敗的資源配置
+ a| 
+`75%`
+
+
+
+| `nfsMountOptions`  a| 
+精細控制NFS掛載選項；預設為「-o nfsver=3」。*僅適用於 `ontap-nas` 和 `ontap-nas-economy` 驅動程式*。 https://www.netapp.com/pdf.html?item=/media/10720-tr-4067.pdf["請參閱此處的NFS主機組態資訊"^]。
+ a| 
+`-o nfsvers=4`
+
+
+
+| `igroupName`  a| 
+Astra Trident 會建立及管理每個節點 `igroups` 做為 `netappdvp`。
+
+此值不可變更或省略。
+
+*僅適用於 `ontap-san` 驅動程式 * 。
+ a| 
+`netappdvp`
+
+
+
+| `limitVolumeSize`  a| 
+可申請的Volume大小上限和qtree父Volume大小上限。*適用於 `ontap-nas-economy` 驅動程式、此選項還會限制其所建立的FlexVols的大小*。
+ a| 
+`300g`
+
+
+
+| `qtreesPerFlexvol`  a| 
+每FlexVol 個邊區最多qtree數、範圍必須為[50、300]、預設值為200。
+
+*適用於 `ontap-nas-economy` 驅動程式、此選項可自訂每FlexVol 個版本的qtree數量上限*。
+ a| 
+`300`
+
+
+
+| `sanType` | * 支援 `ontap-san` 僅限驅動程式。 *
+
+用於選擇 `iscsi` 適用於 iSCSI 或 `nvme` 適用於 NVMe / TCP 。 | `iscsi` 如果空白 
+|===
+您可以使用預設選項、避免在您建立的每個Volume上指定這些選項：
+
+[cols="1,3,2"]
+|===
+| 選項 | 說明 | 範例 
+
+
+| `spaceReserve`  a| 
+空間保留模式； `none` （精簡配置）或 `volume` （粗）
+ a| 
+`none`
+
+
+
+| `snapshotPolicy`  a| 
+要使用的 Snapshot 原則、預設為 `none`
+ a| 
+`none`
+
+
+
+| `snapshotReserve`  a| 
+Snapshot 保留百分比、預設為「」接受 ONTAP 預設值
+ a| 
+`10`
+
+
+
+| `splitOnClone`  a| 
+建立複本時、將其父複本分割成預設值 `false`
+ a| 
+`false`
+
+
+
+| `encryption`  a| 
+在新磁碟區上啟用NetApp Volume Encryption（NVE）；預設為 `false`。必須在叢集上授權並啟用NVE、才能使用此選項。
+
+如果在後端啟用NAE、則Astra Trident中配置的任何磁碟區都會啟用NAE。
+
+如需詳細資訊、請參閱： link:../trident-reco/security-reco.html["Astra Trident如何與NVE和NAE搭配運作"]。
+ a| 
+是的
+
+
+
+| `unixPermissions`  a| 
+NAS 選項適用於已佈建的 NFS 磁碟區、預設為 `777`
+ a| 
+`777`
+
+
+
+| `snapshotDir`  a| 
+NAS選項、可存取 `.snapshot` 目錄、預設為 `false`
+ a| 
+`true`
+
+
+
+| `exportPolicy`  a| 
+NFS 匯出原則使用的 NAS 選項、預設為 `default`
+ a| 
+`default`
+
+
+
+| `securityStyle`  a| 
+NAS選項、可存取已配置的NFS Volume。
+
+NFS支援 `mixed` 和 `unix` 安全樣式：預設值為 `unix`。
+ a| 
+`unix`
+
+
+
+| `fileSystemType`  a| 
+SAN 選項可選擇檔案系統類型、預設為 `ext4`
+ a| 
+`xfs`
+
+
+
+| `tieringPolicy`  a| 
+要使用的分層原則、預設為 `none`； `snapshot-only` 適用於 ONTAP 9.5 之前的 SVM-DR 組態
+ a| 
+`none`
+
+|===
+
+
+=== 擴充選項
+
+。 `ontap-nas` 和 `ontap-san` 驅動程式會為ONTAP FlexVol 每個Docker Volume建立一個支援功能。支援每個叢集節點最多1000個FlexVols、叢集最多12、000個FlexVols。ONTAP如果您的Docker Volume需求符合該限制 `ontap-nas` 由於FlexVols提供的其他功能（例如Docker Volume精細快照和複製）、因此驅動程式是首選的NAS解決方案。
+
+如果您需要的Docker磁碟區數量超過FlexVol 了《支援範圍 `ontap-nas-economy` 或 `ontap-san-economy` 驅動程式：
+
+。 `ontap-nas-economy` 驅動程式會在ONTAP 自動管理的FlexVols資源池中、將Docker Volume建立為架構樹狀結構。qtree的擴充能力大幅提升、每個叢集節點最多可達100、000個、每個叢集最多可達2、400、000個、而犧牲了部分功能。。 `ontap-nas-economy` 驅動程式不支援Docker Volume精細的快照或複製。
+
+
+NOTE: 。 `ontap-nas-economy` Docker swarm目前不支援驅動程式、因為swarm不會協調跨多個節點建立磁碟區。
+
+。 `ontap-san-economy` 驅動程式會在ONTAP 自動管理的FlexVols共用集區內、將Docker Volume建立為如此FlexVol 一來、每個支援不只侷限於一個LUN、而且能為SAN工作負載提供更好的擴充性。根據儲存陣列的不同、ONTAP 每個叢集最多可支援16384個LUN。由於磁碟區是下方的LUN、因此此驅動程式支援Docker磁碟區精細快照和複製。
+
+選擇 `ontap-nas-flexgroup` 將平行處理能力提升至單一磁碟區、以數十億個檔案擴充至PB範圍。FlexGroups的一些理想使用案例包括AI / ML / DL、Big Data和分析、軟體建置、串流、檔案儲存庫等。Trident在配置FlexGroup 完一套SVM時、會使用指派給SVM的所有集合體。支援Trident也有下列考量：FlexGroup
+
+* 需要ONTAP 9.2版或更新版本。
+* 截至本文撰寫時、FlexGroups僅支援NFS v3。
+* 建議啟用SVM的64位元NFSv3識別碼。
+* 建議的 FlexGroup 成員 / 磁碟區大小下限為 100GiB 。
+* 不支援FlexGroup 將複製複製用於實體磁碟區。
+
+
+如需適用於FlexGroups的FlexGroups與工作負載相關資訊、請參閱 https://www.netapp.com/pdf.html?item=/media/12385-tr4571pdf.pdf["NetApp FlexGroup 《NetApp》《最佳實務做法與實作指南》"^]。
+
+若要在同一個環境中獲得進階功能和大規模擴充、您可以使用執行多個Docker Volume外掛程式執行個體 `ontap-nas` 和另一個使用 `ontap-nas-economy`。
+
+
+
+=== 範例ONTAP ：功能組態檔
+
+.<code>ontap-nas</code> 驅動程式的 NFS 範例
+[%collapsible]
+====
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "ontap-nas",
+    "managementLIF": "10.0.0.1",
+    "dataLIF": "10.0.0.2",
+    "svm": "svm_nfs",
+    "username": "vsadmin",
+    "password": "password",
+    "aggregate": "aggr1",
+    "defaults": {
+      "size": "10G",
+      "spaceReserve": "none",
+      "exportPolicy": "default"
+    }
+}
+----
+====
+.<code>ontap-nas-flexgroup</code> 驅動程式的 NFS 範例
+[%collapsible]
+====
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "ontap-nas-flexgroup",
+    "managementLIF": "10.0.0.1",
+    "dataLIF": "10.0.0.2",
+    "svm": "svm_nfs",
+    "username": "vsadmin",
+    "password": "password",
+    "defaults": {
+      "size": "100G",
+      "spaceReserve": "none",
+      "exportPolicy": "default"
+    }
+}
+----
+====
+.<code>ontap-nas-economy</code> 驅動程式的 NFS 範例
+[%collapsible]
+====
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "ontap-nas-economy",
+    "managementLIF": "10.0.0.1",
+    "dataLIF": "10.0.0.2",
+    "svm": "svm_nfs",
+    "username": "vsadmin",
+    "password": "password",
+    "aggregate": "aggr1"
+}
+----
+====
+.<code>ontap-san</code> 驅動程式的 iSCSI 範例
+[%collapsible]
+====
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "ontap-san",
+    "managementLIF": "10.0.0.1",
+    "dataLIF": "10.0.0.3",
+    "svm": "svm_iscsi",
+    "username": "vsadmin",
+    "password": "password",
+    "aggregate": "aggr1",
+    "igroupName": "netappdvp"
+}
+----
+====
+.<code>ontap-san-economy</code> 驅動程式的 NFS 範例
+[%collapsible]
+====
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "ontap-san-economy",
+    "managementLIF": "10.0.0.1",
+    "dataLIF": "10.0.0.3",
+    "svm": "svm_iscsi_eco",
+    "username": "vsadmin",
+    "password": "password",
+    "aggregate": "aggr1",
+    "igroupName": "netappdvp"
+}
+----
+====
+.<code>ontap-san</code> 驅動程式的 NVMe / TCP 範例
+[%collapsible]
+====
+[listing]
+----
+{
+  "version": 1,
+  "backendName": "NVMeBackend",
+  "storageDriverName": "ontap-san",
+  "managementLIF": "10.0.0.1",
+  "svm": "svm_nvme",
+  "username":"vsadmin",
+  "password":"password",
+  "sanType": "nvme",
+  "useREST": true
+}
+----
+====
+
+
+== 元件軟體組態
+
+除了全域組態值之外、使用Element軟體（NetApp HCI / SolidFire）時、也可使用這些選項。
+
+[cols="3*"]
+|===
+| 選項 | 說明 | 範例 
+
+
+| `Endpoint`  a| 
+https ： <login> ： <password> ： <mvip> / json <element-version>
+ a| 
+\https://admin:admin@192.168.160.3/json-rpc/8.0
+
+
+
+| `SVIP`  a| 
+iSCSI IP位址和連接埠
+ a| 
+10.0.0.7：3260
+
+
+
+| `TenantName`  a| 
+要使用的SolidFireF租戶（如果找不到、請建立）
+ a| 
+`docker`
+
+
+
+| `InitiatorIFace`  a| 
+將iSCSI流量限制為非預設介面時、請指定介面
+ a| 
+`default`
+
+
+
+| `Types`  a| 
+QoS規格
+ a| 
+請參閱以下範例
+
+
+
+| `LegacyNamePrefix`  a| 
+升級版Trident安裝的首碼。如果您使用 1.3.2 之前的 Trident 版本、並使用現有的 Volume 執行升級、則必須設定此值、才能存取透過 Volume 名稱方法對應的舊 Volume 。
+ a| 
+`netappdvp-`
+
+|===
+。 `solidfire-san` 驅動程式不支援Docker Swarm。
+
+
+
+=== 元素軟體組態檔範例
+
+[listing]
+----
+{
+    "version": 1,
+    "storageDriverName": "solidfire-san",
+    "Endpoint": "https://admin:admin@192.168.160.3/json-rpc/8.0",
+    "SVIP": "10.0.0.7:3260",
+    "TenantName": "docker",
+    "InitiatorIFace": "default",
+    "Types": [
+        {
+            "Type": "Bronze",
+            "Qos": {
+                "minIOPS": 1000,
+                "maxIOPS": 2000,
+                "burstIOPS": 4000
+            }
+        },
+        {
+            "Type": "Silver",
+            "Qos": {
+                "minIOPS": 4000,
+                "maxIOPS": 6000,
+                "burstIOPS": 8000
+            }
+        },
+        {
+            "Type": "Gold",
+            "Qos": {
+                "minIOPS": 6000,
+                "maxIOPS": 8000,
+                "burstIOPS": 10000
+            }
+        }
+    ]
+}
+----

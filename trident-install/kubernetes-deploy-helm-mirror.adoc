@@ -1,0 +1,221 @@
+---
+sidebar: sidebar 
+permalink: trident-get-started/kubernetes-deploy-helm-mirror.html 
+keywords: deploy, astra trident, operator, helm, helm chart, configuration, values, offline, air gap, gap, registry 
+summary: 您可以部署Trident運算子、並使用Helm安裝Astra Trident。此程序適用於將Astra Trident所需的容器映像儲存在私有登錄中的安裝。 
+---
+= 使用Helm部署Trident運算子（離線模式）
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以部署Trident運算子、並使用Helm安裝Astra Trident。此程序適用於將Astra Trident所需的容器映像儲存在私有登錄中的安裝。如果您沒有私有映像登錄、請使用 link:kubernetes-deploy-helm.html["標準部署程序"]。
+
+
+
+== Astra Trident 24.02 的重要資訊
+
+*您必須閱讀下列有關Astra Trident的重要資訊。*
+
+.關於Astra Trid-功能 的資訊</strong> <strong>
+[%collapsible%open]
+====
+* Kubernetes 1.27 現在支援 Trident 。升級Kubernetes之前先升級Trident。
+* Astra Trident在SAN環境中嚴格執行多重路徑組態的使用、建議的值為 `find_multipaths: no` 在多重路徑.conf檔案中。
++
+使用非多重路徑組態或使用 `find_multipaths: yes` 或 `find_multipaths: smart` 多重路徑.conf檔案中的值會導致掛載失敗。Trident建議使用 `find_multipaths: no` 自21.07版本以來。
+
+
+
+====
+
+
+== 部署Trident操作員、並使用Helm安裝Astra Trident
+
+使用Trident link:https://artifacthub.io/packages/helm/netapp-trident/trident-operator["掌舵表"^] 您可以部署Trident運算子、並在單一步驟中安裝Trident。
+
+檢閱 link:../trident-get-started/kubernetes-deploy.html["安裝總覽"] 為了確保您符合安裝先決條件、並為您的環境選擇正確的安裝選項。
+
+.開始之前
+此外 link:../trident-get-started/kubernetes-deploy.html#before-you-deploy["部署先決條件"] 您的需求 link:https://v3.helm.sh/["Helm版本3"^]。
+
+.步驟
+. 新增Astra Trident Helm儲存庫：
++
+[listing]
+----
+helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
+----
+. 使用 `helm install` 並指定部署和映像登錄位置的名稱。您的 link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和csi影像"] 可以位於一個登錄或不同的登錄中、但所有的SCSI映像都必須位於同一個登錄中。在範例中、 `100.2402.0` 是您要安裝的Astra Trident版本。
++
+[role="tabbed-block"]
+====
+.一個登錄中的映像
+--
+[listing]
+----
+helm install <name> netapp-trident/trident-operator --version 100.2402.0 --set imageRegistry=<your-registry> --create-namespace --namespace <trident-namespace>
+----
+--
+.不同登錄中的映像
+--
+您必須附加 `sig-storage` 至 `imageRegistry` 使用不同的登錄位置。
+
+[listing]
+----
+helm install <name> netapp-trident/trident-operator --version 100.2402.0 --set imageRegistry=<your-registry>/sig-storage --set operatorImage=<your-registry>/netapp/trident-operator:24.02.0 --set tridentAutosupportImage=<your-registry>/netapp/trident-autosupport:24.02 --set tridentImage=<your-registry>/netapp/trident:24.02.0 --create-namespace --namespace <trident-namespace>
+----
+--
+====
++
+
+NOTE: 如果您已經為Trident建立命名空間 `--create-namespace` 參數不會建立額外的命名空間。
+
+
+
+您可以使用 `helm list` 若要檢閱安裝詳細資料、例如名稱、命名空間、圖表、狀態、應用程式版本、和修訂編號。
+
+
+
+== 在安裝期間傳遞組態資料
+
+安裝期間有兩種傳遞組態資料的方法：
+
+[cols="2"]
+|===
+| 選項 | 說明 
+
+
+| `--values` （或 `-f`）  a| 
+指定具有覆寫的Yaml檔案。這可以多次指定、最右邊的檔案會優先。
+
+
+
+| `--set`  a| 
+在命令列上指定置換。
+
+|===
+例如、變更的預設值 `debug`請執行下列步驟 `--set` 命令位置 `100.2402.0` 您要安裝的Astra Trident版本：
+
+[listing]
+----
+helm install <name> netapp-trident/trident-operator --version 100.2402.0  --create-namespace --namespace trident --set tridentDebug=true
+----
+
+
+== 組態選項
+
+此表格和 `values.yaml` 檔案是 Helm 圖表的一部分、提供按鍵清單及其預設值。
+
+[cols="3"]
+|===
+| 選項 | 說明 | 預設 
+
+
+| `nodeSelector` | Pod 指派的節點標籤 |  
+
+
+| `podAnnotations` | Pod 註釋 |  
+
+
+| `deploymentAnnotations` | 部署註釋 |  
+
+
+| `tolerations` | Pod 指派的容錯功能 |  
+
+
+| `affinity` | Pod 指派的關聯性 |  
+
+
+| `tridentControllerPluginNodeSelector` | 用於 Pod 的其他節點選取器。請參閱 link:../trident-get-started/architecture.html#understanding-controller-pods-and-node-pods["瞭解控制器 Pod 和節點 Pod"] 以取得詳細資料。 |  
+
+
+| `tridentControllerPluginTolerations` | 覆寫 Pod 的 Kubernetes 公差。請參閱 link:../trident-get-started/architecture.html#understanding-controller-pods-and-node-pods["瞭解控制器 Pod 和節點 Pod"] 以取得詳細資料。 |  
+
+
+| `tridentNodePluginNodeSelector` | 用於 Pod 的其他節點選取器。請參閱 link:../trident-get-started/architecture.html#understanding-controller-pods-and-node-pods["瞭解控制器 Pod 和節點 Pod"] 以取得詳細資料。 |  
+
+
+| `tridentNodePluginTolerations` | 覆寫 Pod 的 Kubernetes 公差。請參閱 link:../trident-get-started/architecture.html#understanding-controller-pods-and-node-pods["瞭解控制器 Pod 和節點 Pod"] 以取得詳細資料。 |  
+
+
+| `imageRegistry` | 識別的登錄 `trident-operator`、 `trident`和其他影像。  保留空白以接受預設值。 | " 
+
+
+| `imagePullPolicy` | 設定的映像拉出原則 `trident-operator`。 | `IfNotPresent` 
+
+
+| `imagePullSecrets` | 設定的影像拉出秘密 `trident-operator`、 `trident`和其他影像。 |  
+
+
+| `kubeletDir` | 允許覆寫 kubelet 內部狀態的主機位置。 | `"/var/lib/kubelet"` 
+
+
+| `operatorLogLevel` | 允許 Trident 運算子的記錄層級設定為： `trace`、 `debug`、 `info`、 `warn`、 `error`或 `fatal`。 | `"info"` 
+
+
+| `operatorDebug` | 允許將 Trident 運算子的記錄層級設為偵錯。 | `true` 
+
+
+| `operatorImage` | 允許完全置換的映像 `trident-operator`。 | " 
+
+
+| `operatorImageTag` | 允許覆寫的標記 `trident-operator` 映像。 | " 
+
+
+| `tridentIPv6` | 允許 Astra Trident 在 IPv6 叢集中運作。 | `false` 
+
+
+| `tridentK8sTimeout` | 覆寫大部分 Kubernetes API 作業的預設 30 秒逾時（如果非零、則以秒為單位）。 | `0` 
+
+
+| `tridentHttpRequestTimeout` | 以取代 HTTP 要求的預設 90 秒逾時 `0s` 是超時的無限持續時間。不允許使用負值。 | `"90s"` 
+
+
+| `tridentSilenceAutosupport` | 可停用 Astra Trident 定期 AutoSupport 報告。 | `false` 
+
+
+| `tridentAutosupportImageTag` | 可覆寫 Astra Trident AutoSupport 容器的映像標記。 | `<version>` 
+
+
+| `tridentAutosupportProxy` | 允許 Astra Trident AutoSupport 容器透過 HTTP Proxy 撥打電話回家。 | " 
+
+
+| `tridentLogFormat` | 設定 Astra Trident 記錄格式 (`text` 或 `json`）。 | `"text"` 
+
+
+| `tridentDisableAuditLog` | 停用 Astra Trident 稽核記錄程式。 | `true` 
+
+
+| `tridentLogLevel` | 允許將 Astra Trident 的記錄層級設定為： `trace`、 `debug`、 `info`、 `warn`、 `error`或 `fatal`。 | `"info"` 
+
+
+| `tridentDebug` | 允許將 Astra Trident 的記錄層級設為 `debug`。 | `false` 
+
+
+| `tridentLogWorkflows` | 允許啟用特定的 Astra Trident 工作流程、以進行追蹤記錄或記錄抑制。 | " 
+
+
+| `tridentLogLayers` | 允許啟用特定的 Astra Trident 圖層、以進行追蹤記錄或記錄抑制。 | " 
+
+
+| `tridentImage` | 允許完整置換 Astra Trident 的影像。 | " 
+
+
+| `tridentImageTag` | 可覆寫 Astra Trident 的影像標記。 | " 
+
+
+| `tridentProbePort` | 允許覆寫 Kubernetes 活性 / 整備性探查所使用的預設連接埠。 | " 
+
+
+| `windows` | 允許在 Windows 工作節點上安裝 Astra Trident 。 | `false` 
+
+
+| `enableForceDetach` | 允許啟用強制分離功能。 | `false` 
+
+
+| `excludePodSecurityPolicy` | 不建立營運商 Pod 安全性原則。 | `false` 
+|===
