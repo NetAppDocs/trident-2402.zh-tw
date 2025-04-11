@@ -4510,4 +4510,6 @@ ONTAP 後端的 Amazon FSX 需要此參數。</block>
   <block id="e932e8b67111a2dc118d7599f04cdc8b" category="paragraph">Astra Control Provisioner 會從快照還原資料。您可以驗證快照還原狀態。</block>
   <block id="454c5148c2a664f37fc49833dc491272" category="list-text">在大多數情況下、 Astra Control Provisioner 不會在發生故障時自動重試作業。您需要再次執行此作業。</block>
   <block id="c83b74c2020dd836f5b401ecda0da78c" category="list-text">不具備管理員存取權限的 Kubernetes 使用者可能必須獲得管理員的權限、才能在其應用程式命名空間中建立 TASR CR 。</block>
+  <block id="fd2382cbf04a0cd551917ebb29238078" category="paragraph">在 K8s 環境中使用 NVMe / TCP 時，如果節點名稱較長，則 Pod 無法附加至儲存設備。</block>
+  <block id="aa68fd6175a82d0d7c1dda4f60cac719" category="paragraph">縮短節點名稱，使子系統名稱少於 64 個字元。</block>
 </blocks>
