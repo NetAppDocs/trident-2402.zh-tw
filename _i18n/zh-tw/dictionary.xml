@@ -1217,9 +1217,6 @@ Astra Trident ；操作人員將自動嘗試從此狀態恢復。如果此狀態
   <block id="f72ba1a3a498489a96fd8774bfa9ea9d" category="example-title">支援升級功能的不一樣之處&lt;/strong&gt; &lt;strong&gt;</block>
   <block id="f456a413d0506028374e871768a5f176" category="paragraph">當叢集的Kubernetes版本升級至支援的版本時、營運者會自動更新現有的Astra Trident安裝、並加以變更、以確保其符合Kubernetes版本的要求。</block>
   <block id="d1aae6ea63eb5e7fe6a9fcea5f671406" category="admonition">如果叢集升級至不受支援的版本、則操作員將無法安裝Astra Trident。如果操作員已安裝Astra Trident、則會顯示警告、指出Astra Trident安裝在不受支援的Kubernetes版本上。</block>
-  <block id="c3b2fe84f143129d7a18ad12df229bc6" category="example-title">使用BlueXP（前身為Cloud Manager）進行叢集管理&lt;/strong&gt; &lt;strong&gt;</block>
-  <block id="fd1117c82327fbe8671f26e897ceb8f4" category="inline-link-macro">使用BlueXP的Astra Trident</block>
-  <block id="a76a1e164520105317267dc41b95e8ce" category="paragraph">與 <block ref="f8c16e8c21124ccc028d2db7fd32a98f" category="inline-link-macro-rx"></block>、您可以升級至最新版的Astra Trident、新增及管理儲存類別、並將其連線至工作環境、以及使用Cloud Backup Service NetApp備份持續的Volume。BlueXP支援使用Trident操作者手動或使用Helm進行Astra Trident部署。</block>
   <block id="43e6c0a141c1737a96917c56c7e22a73" category="inline-link-macro">安裝&lt;block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category='inline-code'/&gt; 功能</block>
   <block id="1a2de31d648d8c09e5c2a9257a5ad67b" category="paragraph">如果您現有的部署必須升級、或是想要高度自訂部署、您應該考慮 <block ref="e214bf159dbaf6573cfe15f1373b92db" category="inline-link-macro-rx"></block>。這是部署Astra Trident的傳統方法。</block>
   <block id="4c24a3b9facf2ea9fc7ed2ca52dab45d" category="inline-link-macro">客製化安裝功能&lt;block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category='inline-code'/&gt;</block>
@@ -4512,4 +4509,6 @@ ONTAP 後端的 Amazon FSX 需要此參數。</block>
   <block id="c83b74c2020dd836f5b401ecda0da78c" category="list-text">不具備管理員存取權限的 Kubernetes 使用者可能必須獲得管理員的權限、才能在其應用程式命名空間中建立 TASR CR 。</block>
   <block id="fd2382cbf04a0cd551917ebb29238078" category="paragraph">在 K8s 環境中使用 NVMe / TCP 時，如果節點名稱較長，則 Pod 無法附加至儲存設備。</block>
   <block id="aa68fd6175a82d0d7c1dda4f60cac719" category="paragraph">縮短節點名稱，使子系統名稱少於 64 個字元。</block>
+  <block id="15eaa3bd461b989a50d54376e8b82942" category="example-title">&lt;strong&gt;使用NetApp Console管理 Kubernetes 叢集&lt;/strong&gt;</block>
+  <block id="28cfb8f261719a05032a41acccc32995" category="paragraph">透過使用NetApp Console 的Astra Trident ，您可以升級至最新版本的Astra Trident，新增和管理儲存類別並將其連接到工作環境，以及使用Cloud Backup Service備份持久性磁碟區。控制台支援使用Trident操作員手動或使用 Helm 部署Astra Trident 。</block>
 </blocks>

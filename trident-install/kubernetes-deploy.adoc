@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: trident-get-started/kubernetes-deploy.html 
-keywords: deploy, astra trident, methods, operator, tridentctl, helm, tanzu, vmware 
+keywords: deploy, astra trident, methods, operator, tridentctl, helm, tanzu, vmware, netapp console 
 summary: '您可以使用Trident運算子（手動或使用Helm）或搭配安裝Astra Trident `tridentctl`。本主題提供重要資訊、協助您選擇正確的安裝程序。' 
 ---
 = 瞭解Astra Trident安裝
@@ -115,10 +115,10 @@ kubectl patch torc <trident-orchestrator-name> -n trident --type=merge -p '{"spe
 NOTE: 如果叢集升級至不受支援的版本、則操作員將無法安裝Astra Trident。如果操作員已安裝Astra Trident、則會顯示警告、指出Astra Trident安裝在不受支援的Kubernetes版本上。
 
 ====
-.使用BlueXP（前身為Cloud Manager）進行叢集管理</strong> <strong>
+.<strong>使用NetApp Console管理 Kubernetes 叢集</strong>
 [%collapsible]
 ====
-與 link:https://docs.netapp.com/us-en/cloud-manager-kubernetes/concept-kubernetes.html["使用BlueXP的Astra Trident"^]、您可以升級至最新版的Astra Trident、新增及管理儲存類別、並將其連線至工作環境、以及使用Cloud Backup Service NetApp備份持續的Volume。BlueXP支援使用Trident操作者手動或使用Helm進行Astra Trident部署。
+透過使用NetApp Console 的Astra Trident ，您可以升級至最新版本的Astra Trident，新增和管理儲存類別並將其連接到工作環境，以及使用Cloud Backup Service備份持久性磁碟區。控制台支援使用Trident操作員手動或使用 Helm 部署Astra Trident 。
 
 ====
 
