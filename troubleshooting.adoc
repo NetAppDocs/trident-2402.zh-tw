@@ -57,7 +57,7 @@ helm upgrade <name> trident-operator-21.07.1-custom.tgz --set tridentDebug=true`
 
 * 您也可以取得每個後端的除錯記錄、方法是加入 `debugTraceFlags` 在後端定義中。例如、包括 `debugTraceFlags: {“api”:true, “method”:true,}` 取得Trident記錄中的API呼叫和方法反向。現有的後端可以有 `debugTraceFlags` 設定為 `tridentctl backend update`。
 * 使用RedHat CoreOS時、請務必確認 `iscsid` 在工作節點上啟用、預設為啟動。您可以使用OpenShift機器組態或修改點火模板來完成此作業。
-* 使用Trident時可能會遇到的常見問題 https://azure.microsoft.com/en-us/services/netapp/["Azure NetApp Files"] 當租戶和用戶端機密來自權限不足的應用程式登錄時。如需 Trident 需求的完整清單、請參閱 link:trident-use/anf.html["Azure NetApp Files"] 組態：
+* 使用 Trident 搭配 https://azure.microsoft.com/en-us/products/netapp/["Azure NetApp Files"]時，您可能會遇到的常見問題是租用戶金鑰和客戶端金鑰來自權限不足的應用程式註冊。有關 Trident 要求的完整清單，請參閱link:trident-use/anf.html["Azure NetApp Files"]組態。
 * 如果在將PV安裝至容器時發生問題、請確定 `rpcbind` 已安裝並執行。使用主機作業系統所需的套件管理程式、並檢查是否有 `rpcbind` 正在執行。您可以檢查的狀態 `rpcbind` 執行 `systemctl status rpcbind` 或同等產品。
 * 如果Trident後端報告其位於 `failed` 狀態儘管以前曾經工作過、但可能是因為變更與後端相關的SVM/admin認證資料所致。使用更新後端資訊 `tridentctl update backend` 或是退回Trident Pod即可解決此問題。
 * 如果在容器執行時間安裝Trident with Docker時遇到權限問題、請嘗試使用安裝Trident `--in cluster=false` 旗標。這不會使用安裝程式pod、也會避免因為而發生權限問題 `trident-installer` 使用者：

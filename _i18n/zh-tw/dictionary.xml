@@ -176,10 +176,7 @@
   <block id="1a3a2b5e6c52142797bb5c00594e2a3c" category="inline-link-macro">23.04</block>
   <block id="4f00a05b361ef580687832a6a48984db" category="paragraph"><block ref="4f00a05b361ef580687832a6a48984db" category="inline-link-macro-rx"></block></block>
   <block id="fc7d05f9009e90b92a15aad926bca249" category="cell">2026 年 4 月</block>
-  <block id="8dfda84fc7f59655e20a770603bf9231" category="inline-link-macro">23.01</block>
-  <block id="e0ed61e44672f0b6193055dd0719d240" category="paragraph"><block ref="e0ed61e44672f0b6193055dd0719d240" category="inline-link-macro-rx"></block></block>
   <block id="cfab1ba8c67c7c838db98d666f02a132" category="cell">--</block>
-  <block id="7022ed6df71cc12fbd0576cef4df23fd" category="cell">2026 年 1 月</block>
   <block id="40e41fb2db11266b8f751c0d5c67cba0" category="inline-link">NetApp知識庫（需要登入）</block>
   <block id="02156e884c41dcd300cb53b1bedf09d8" category="paragraph">如需疑難排解文章的完整清單、請參閱<block ref="57f5c759ada931c6a2051314ca6ee99e" category="inline-link-rx"></block>。您也可以找到Astra相關疑難排解問題的相關資訊<block ref="695f48b1d8b7348c0e2828947d24161e" category="inline-link-rx"></block>。</block>
   <block id="1cf7168782187634fbc408c66b895dbc" category="section-title">社群支援</block>
@@ -516,7 +513,6 @@
   <block id="20a385c1dc7ef65425669840055b5330" category="list-text">建議的 FlexGroup 成員 / 磁碟區大小下限為 100GiB 。</block>
   <block id="db78b2a7acf43fa03cd95fb3a77c82f9" category="list-text">不支援FlexGroup 將複製複製用於實體磁碟區。</block>
   <block id="f5ac1e3c252855373c7f660dbd89699d" category="inline-link">NetApp FlexGroup 《NetApp》《最佳實務做法與實作指南》</block>
-  <block id="df1a7e79743809601db1d20d6a33ae52" category="paragraph">如需適用於FlexGroups的FlexGroups與工作負載相關資訊、請參閱<block ref="b8a99695d7979127a1cab07b42e22743" category="inline-link-rx"></block>。</block>
   <block id="b30b6b60171d85877ea91897bdd6faed" category="paragraph">若要在同一個環境中獲得進階功能和大規模擴充、您可以使用執行多個Docker Volume外掛程式執行個體<block ref="8321592ce24c8a122ecf26a63cfca407" prefix=" " category="inline-code"></block> 和另一個使用<block ref="caafdf62a2c609bfa5316118231a1007" prefix=" " category="inline-code"></block>。</block>
   <block id="0c0f6724044ed44fb85d2ce3193cb7c3" category="section-title">範例ONTAP ：功能組態檔</block>
   <block id="9dbc2be9eae595ee555b36e2d5464473" category="example-title">&lt;code&gt;ontap-nas&lt;/code&gt; 驅動程式的 NFS 範例</block>
@@ -724,7 +720,6 @@
   <block id="1fdf61a8f946268990d8e15dd9069a6d" category="paragraph"><block ref="eca39b018af81e7b5c8e71b5b4aa3790" category="inline-link-rx"></block> 儲存管理員可藉由保證效能、並簡化及簡化儲存設備佔用空間、來整合工作負載。搭配API來實現儲存管理所有層面的自動化、Element可讓儲存管理員以更少的心力完成更多工作。</block>
   <block id="25f221cc63a7e1fa55b05c29420a72a2" category="paragraph"><block ref="2841e7defe3939e68d83d007d1ad666b" category="inline-link-rx"></block> 將例行工作自動化、讓基礎架構管理員能夠專注於更重要的功能、進而簡化資料中心的管理與規模。</block>
   <block id="be17f8b9c728a6cb61cad5a2609b3888" category="paragraph">Trident完全支援此功能。NetApp HCITrident可直接針對底層NetApp HCI 的資訊儲存平台、為容器化應用程式配置及管理儲存設備。</block>
-  <block id="29e7ab00082418141d470583a19c28d3" category="paragraph"><block ref="2384314bcd106c8062815b2ed789c4ad" category="inline-link-rx"></block> 是採用NetApp技術的企業級Azure檔案共享服務。您可以在Azure原生環境中執行最嚴苛的檔案型工作負載、並享有NetApp所提供的效能與豐富資料管理功能。</block>
   <block id="a1515efe69d0ac9d979af2bdfc068934" category="paragraph"><block ref="68704f3321dd8ca7029c03c29da7736a" category="inline-link-rx"></block> 是雲端原生檔案服務、可透過NFS和SMB提供NAS磁碟區的All Flash效能。此服務可讓任何工作負載（包括舊版應用程式）在GCP雲端上執行。它提供完整的託管服務、提供一致的高效能、即時複製、資料保護、以及安全存取Google Compute Engine（GCE）執行個體。</block>
   <block id="a60c2f57df655a9ac5fcaa0750886195" category="summary">如果您剛開始使用Kubernetes、請依照指示安裝Kubernetes來試用。這些說明提供了一個裸機、單節點叢集、Trident可與該叢集整合以供示範之用。</block>
   <block id="fac0082fb8411565f3d5cb3788a17b17" category="doc">Astra Trident 的快速入門</block>
@@ -1594,7 +1589,6 @@ Astra Trident ；操作人員將自動嘗試從此狀態恢復。如果此狀態
 是註腳： 1[] ：不由 Astra Trident 管理
 是註腳： 2[] ：支援原始區塊磁碟區</block>
   <block id="64648abd6d020446c9c8d556a1584d71" category="section-title">背後驅動程式Azure NetApp Files</block>
-  <block id="657e0fa57d574227dd7520919f55ff92" category="paragraph">Astra Trident使用<block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 管理的驅動程式 <block ref="d617d79fbb5ee3bc8bd280353eeb1349" category="inline-link-macro-rx"></block> 服務：</block>
   <block id="1f65578a7accdff5ca6ff9f8dc42d9c6" category="inline-link-macro">Astra Trident的Azure NetApp Files 後端組態、適用於</block>
   <block id="488e366967d09f9808e7b3de7df261ac" category="paragraph">如需此驅動程式及其設定方式的詳細資訊、請參閱 <block ref="7f5bc9035106c3c834aeb8867a5fce2c" category="inline-link-macro-rx"></block>。</block>
   <block id="4da613089cbda3d7c19cb4b3f67c1f5d" category="cell">驅動程式Azure NetApp Files</block>
@@ -1906,7 +1900,6 @@ Astra Trident ；操作人員將自動嘗試從此狀態恢復。如果此狀態
   <block id="2734923c054f38d8ca66133414af4469" category="paragraph">在短時間暴增案例中允許的最大IOPS。</block>
   <block id="e2eb05f1ef7720127ac371ceddc6f433" category="admonition">雖然最大IOPS和爆發IOPS可設定為高達20、000、但實際的Volume最大效能卻受到叢集使用量和每節點效能的限制。</block>
   <block id="fa9b1a3006e0ba9ad904c059c0b9add6" category="inline-link">服務品質SolidFire</block>
-  <block id="acd73d692aa90cacfe480ba8ba39cd5d" category="paragraph">區塊大小和頻寬會直接影響IOPS的數量。隨著區塊大小增加、系統會將頻寬增加至處理較大區塊大小所需的層級。隨著頻寬增加、系統能夠達到的IOPS數量也隨之減少。請參閱<block ref="c8976c50ed9f016849fdce232777cd31" category="inline-link-rx"></block> 如需QoS和效能的詳細資訊、請參閱。</block>
   <block id="b4657825f74ed622384dddf3a1d7d3b7" category="section-title">驗證SolidFire</block>
   <block id="9d3b5ff1cde828a63203f0465a34a967" category="paragraph">Element支援兩種驗證方法：CHAP和Volume Access Groups（VAG）。CHAP使用CHAP傳輸協定驗證主機到後端的驗證。Volume存取群組可控制對其所配置之Volume的存取。NetApp建議使用CHAP進行驗證、因為它更簡單、而且沒有擴充限制。</block>
   <block id="fc9e812321a3f9b0eab1b702a08bab4e" category="admonition">Trident搭配增強的csi佈置程式、可支援使用CHAP驗證。VAG只能在傳統的非csi操作模式下使用。</block>
@@ -1923,7 +1916,6 @@ Astra Trident ；操作人員將自動嘗試從此狀態恢復。如果此狀態
   <block id="36588ac65dcdb9b93916fb0ab708edb3" category="list-text"><block ref="36588ac65dcdb9b93916fb0ab708edb3" category="inline-link-rx"></block></block>
   <block id="ca7ab5ec4cba84fbef55956bb38759ce" category="paragraph">*元件軟體*</block>
   <block id="e809d9f88c2933195c4d2ab379c1b5dc" category="inline-link">設定SolidFire 適用於Linux的功能</block>
-  <block id="ce0470e08aa854a8f93fa119434e8422" category="list-text"><block ref="ce0470e08aa854a8f93fa119434e8422" category="inline-link-rx"></block></block>
   <block id="d64280eb12d42bb67976ffba6d268e7b" category="paragraph">*《*》NetApp HCI</block>
   <block id="3bc72bedcc42d144356d4f933c48485d" category="inline-link">部署先決條件NetApp HCI</block>
   <block id="85bfffc1a1f7aaabd6cf58841640c308" category="list-text"><block ref="85bfffc1a1f7aaabd6cf58841640c308" category="inline-link-rx"></block></block>
@@ -2770,7 +2762,6 @@ SMB磁碟區已忽略。</block>
   <block id="84444089b52eed627a838de74ae8d652" category="section-title">NFS 和 SMB 磁碟區的必要條件</block>
   <block id="97d64245613ba751b698ce77fd51779a" category="inline-link">Azure：設定Azure NetApp Files 功能以建立NFS Volume</block>
   <block id="d90582d42d65d5af05c3d40ad0eb4987" category="paragraph">如果您是第一次使用 Azure NetApp Files 、或是在新位置使用、則必須先進行一些初始設定、才能設定 Azure NetApp Files 並建立 NFS Volume 。請參閱<block ref="b6e93c3bfc36cf835c63e42e55586d97" category="inline-link-rx"></block>。</block>
-  <block id="07e7004c50a67a3e4e366b4ca1c28e3d" category="paragraph">若要設定及使用<block ref="24a785881ff1cdf191a2239811dc9597" category="inline-link-rx"></block> 後端、您需要下列項目：</block>
   <block id="4e92a2addd95bd2076226bce70449f6d" category="list-text"><block ref="8c443e170595ba0feac007ffb92cb49a" prefix="" category="inline-code"></block>、<block ref="bc54592d6183695b841c6d1880ec0bf8" prefix=" " category="inline-code"></block>、<block ref="93c5bebdea9c94a0740fe6fd9bb250f0" prefix=" " category="inline-code"></block>、<block ref="d5189de027922f81005951e6efe0efd5" prefix=" " category="inline-code"></block>和<block ref="2b53761249254ce6b502f521e5cc0683" prefix=" " category="inline-code"></block> 在 AKS 叢集上使用託管身分識別時為選用項目。</block>
   <block id="5c0a5e9c97099065874a650cf8c67a66" category="list-text"><block ref="bc54592d6183695b841c6d1880ec0bf8" prefix="" category="inline-code"></block>、<block ref="93c5bebdea9c94a0740fe6fd9bb250f0" prefix=" " category="inline-code"></block>和<block ref="2b53761249254ce6b502f521e5cc0683" prefix=" " category="inline-code"></block> 在 AKS 叢集上使用雲端身分識別時為選用項目。</block>
   <block id="99c7065ab76131a7b7763287bb5b6735" category="inline-link-macro">Microsoft ：為 Azure NetApp Files 建立容量集區</block>
@@ -4117,7 +4108,6 @@ ONTAP 後端的 Amazon FSX 需要此參數。</block>
   <block id="d356d628089d439d75e3f85564372658" category="list-text">安裝試用版</block>
   <block id="87248f7afe198418bdbedd919695631e" category="list-text">您也可以取得每個後端的除錯記錄、方法是加入<block ref="effa2d809c72dcb6cce15a1e0b040e63" prefix=" " category="inline-code"></block> 在後端定義中。例如、包括<block ref="4974488c28ddbbc84e45d213810267be" prefix=" " category="inline-code"></block> 取得Trident記錄中的API呼叫和方法反向。現有的後端可以有<block ref="effa2d809c72dcb6cce15a1e0b040e63" prefix=" " category="inline-code"></block> 設定為<block ref="ad782b779edfd8199198bed41b3e3b6b" prefix=" " category="inline-code"></block>。</block>
   <block id="6cc37a0664d7f97f87d34eadef23dbad" category="list-text">使用RedHat CoreOS時、請務必確認<block ref="3fe4dc8de876aca2c78fa0cd9c6d0b65" prefix=" " category="inline-code"></block> 在工作節點上啟用、預設為啟動。您可以使用OpenShift機器組態或修改點火模板來完成此作業。</block>
-  <block id="154244be43a4ba50080a256f5657b29a" category="list-text">使用Trident時可能會遇到的常見問題<block ref="4568986ef6397d7c901269fc0e190ede" category="inline-link-rx"></block> 當租戶和用戶端機密來自權限不足的應用程式登錄時。如需 Trident 需求的完整清單、請參閱 <block ref="afedf4ee56554ea6e6b54e6aa206680c" category="inline-link-macro-rx"></block> 組態：</block>
   <block id="7f0ecdfa510b31b01d331c2760643b83" category="list-text">如果在將PV安裝至容器時發生問題、請確定<block ref="7a31649dd02ecf0349542b72f9d5ef54" prefix=" " category="inline-code"></block> 已安裝並執行。使用主機作業系統所需的套件管理程式、並檢查是否有<block ref="7a31649dd02ecf0349542b72f9d5ef54" prefix=" " category="inline-code"></block> 正在執行。您可以檢查的狀態<block ref="7a31649dd02ecf0349542b72f9d5ef54" prefix=" " category="inline-code"></block> 執行<block ref="461bc51ac38341d1d2fdae2e84bc6e47" prefix=" " category="inline-code"></block> 或同等產品。</block>
   <block id="78aeadc89feb4cf244398a7d35a0d656" category="list-text">如果Trident後端報告其位於<block ref="26934eb377001f66e37289a5c93fe284" prefix=" " category="inline-code"></block> 狀態儘管以前曾經工作過、但可能是因為變更與後端相關的SVM/admin認證資料所致。使用更新後端資訊<block ref="defd1e55f93269ac9278afc086951ba8" prefix=" " category="inline-code"></block> 或是退回Trident Pod即可解決此問題。</block>
   <block id="b851cfc28cd6e5cb9aaf87bdb59a68aa" category="list-text">如果在容器執行時間安裝Trident with Docker時遇到權限問題、請嘗試使用安裝Trident<block ref="acbc9344b624715d4749280f7e4a5b49" prefix=" " category="inline-code"></block> 旗標。這不會使用安裝程式pod、也會避免因為而發生權限問題<block ref="c84ef67352bb6783ff2881f9f2821c2a" prefix=" " category="inline-code"></block> 使用者：</block>
@@ -4205,10 +4195,6 @@ ONTAP 後端的 Amazon FSX 需要此參數。</block>
   <block id="62486fa65fc31c383ace8989549632ad" category="sidebar">使用快照</block>
   <block id="190dbae19c88b1e68bf03f7783c5d5d1" category="list-text"><block ref="190dbae19c88b1e68bf03f7783c5d5d1" category="inline-link-rx"></block></block>
   <block id="430c6bcb8516befc45fb8173b0ca4e1f" category="list-text"><block ref="430c6bcb8516befc45fb8173b0ca4e1f" category="inline-link-rx"></block></block>
-  <block id="d7d36869f2f4aa1eb99a10008e153f20" category="list-text"><block ref="d7d36869f2f4aa1eb99a10008e153f20" category="inline-link-rx"></block></block>
-  <block id="f8b52d963f246a75dc6c8b78c954a4fd" category="list-text"><block ref="f8b52d963f246a75dc6c8b78c954a4fd" category="inline-link-rx"></block></block>
-  <block id="b6780b7b2561935ff862fe7126cde751" category="list-text"><block ref="b6780b7b2561935ff862fe7126cde751" category="inline-link-rx"></block></block>
-  <block id="b9a641d903e611a87a5e68ac7fdb0b84" category="list-text">Trident AutoSupport 無法收集或傳輸個人識別資訊（PII）或個人資訊。隨附<block ref="173a360b412944768c2ab13e6c8fd1c7" category="inline-link-rx"></block> 不適用於 Trident 容器映像本身的。您可以深入瞭解 NetApp 對資料安全與信任的承諾<block ref="d3cc55401bc8303e01c6b0c43ba0733f" category="inline-link-rx"></block>。</block>
   <block id="67fc69d0bf35fe0124a1937122bf3aec" category="summary">您可以設定加密、以保護 Astra Control 和儲存後端之間的流量。</block>
   <block id="4d7f45f93965eed03fcd71fbeed6d2a8" category="doc">設定在線上 Kerberos 加密</block>
   <block id="876580b79932af82226561f24b11688f" category="paragraph">使用 Astra Control Provisioner 、您可以為託管叢集與儲存後端之間的流量啟用加密、藉此改善資料存取安全性。</block>
@@ -4502,4 +4488,15 @@ ONTAP 後端的 Amazon FSX 需要此參數。</block>
   <block id="e1d2b7ec66528e55a29a88734b7dd47e" category="paragraph">NetApp 不斷改進和增強其產品和服務。以下是 Astra Trident 的一些最新功能。有關先前版本的信息，請參閱早期版本的文檔。</block>
   <block id="23dc68eb3282da7f8baebc1f7c84fff9" category="inline-link">支援生命週期頁面</block>
   <block id="df26dce8cff00211af89034cce0d1904" category="admonition">有關最新 Trident 版本支援計劃，請參閱<block ref="605c91b6d04b068d1f5e6199e80f3518" category="inline-link-rx"></block>。</block>
+  <block id="1ffa064afd34a4aa3d603a312576309c" category="paragraph">有關 FlexGroups 及適合 FlexGroups 的工作負載的資訊，請參閱<block ref="5eedbc04c087d39db0ca9a8cd8471015" category="inline-link-rx"></block>。</block>
+  <block id="5090b1528d6e6561587ada33bf0caab6" category="paragraph"><block ref="67ffc9d81af4d4784973c007c719056a" category="inline-link-rx"></block> 是由 NetApp 提供支援的企業級 Azure 檔案共用服務。您可以在 Azure 中原生運作要求最嚴苛的基於檔案的工作負載，並獲得您期望從 NetApp 獲得的卓越效能和豐富的資料管理功能。</block>
+  <block id="ff1dca2401508e9666b192612c8dc93d" category="paragraph">Astra Trident 使用 <block ref="bc5779a2d33eeb1304bae57f15920cfc" prefix=" " category="inline-code"></block> 驅動程式來管理 <block ref="72aac22ad2323d491b69751decd3d6b3" category="inline-link-macro-rx"></block> 服務。</block>
+  <block id="6a19e2418aa5a7364cafc452caa81d8b" category="paragraph">區塊大小和頻寬對 IOPS 數量有直接影響。隨著區塊大小增加，系統會將頻寬提高到處理較大區塊大小所需的層級。隨著頻寬增加，系統能夠達到的 IOPS 數量會減少。如需 QoS 和效能的詳細資訊，請參閱<block ref="967e30ab6321feb79b1f60d87637a623" category="inline-link-rx"></block>。</block>
+  <block id="afd3e82da8a12df46005660c5b0458ab" category="list-text"><block ref="afd3e82da8a12df46005660c5b0458ab" category="inline-link-rx"></block></block>
+  <block id="3659f55627e86bd71f85eb663d155fdb" category="list-text"><block ref="3659f55627e86bd71f85eb663d155fdb" category="inline-link-rx"></block></block>
+  <block id="948ce0d4338b9761e83a5c41c4e05b77" category="list-text"><block ref="948ce0d4338b9761e83a5c41c4e05b77" category="inline-link-rx"></block></block>
+  <block id="2f40f77c3e54025e1174369f0cadf798" category="list-text"><block ref="2f40f77c3e54025e1174369f0cadf798" category="inline-link-rx"></block></block>
+  <block id="4d7f894e8ec350a861c28ea984648f59" category="paragraph">要設定和使用 <block ref="22ab900b028c044945b4dba56093fe8f" category="inline-link-rx"></block> 後端、您需要以下元件：</block>
+  <block id="9ea1dc44c501f59786a0dd2c5ebc2d21" category="list-text">Trident AutoSupport 不會收集或傳輸個人識別資訊（PII）或個人資訊。它附帶<block ref="ea14b34590cee15ec565ad8fd8feca2e" category="inline-link-rx"></block>不適用於 Trident 容器映像本身。您可以深入瞭解 NetApp 對資料安全性和信任的承諾<block ref="ea3b01bc03342a227ac7c6848f1e44fa" category="inline-link-rx"></block>。</block>
+  <block id="0aed33e870a02a203987e1f6cbeb75d8" category="list-text">使用 Trident 搭配<block ref="5990d744db8a85d254742635736f0912" category="inline-link-rx"></block>時，您可能會遇到的常見問題是租用戶金鑰和客戶端金鑰來自權限不足的應用程式註冊。有關 Trident 要求的完整清單，請參閱<block ref="afedf4ee56554ea6e6b54e6aa206680c" category="inline-link-macro-rx"></block>組態。</block>
 </blocks>
