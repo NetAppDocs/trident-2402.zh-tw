@@ -12,10 +12,11 @@ summary: 您可以使用業者輕鬆升級現有的Astra Trident安裝。
 
 
 [role="lead"]
-您可以使用 Trident 運算子手動或使用 Helm 來升級 Astra Trident 。您可以從 Trident 運算子安裝升級至其他 Trident 運算子安裝、或從升級 `tridentctl` 安裝至 Trident 運算子版本。檢閱 link:upgrade-trident.html#select-an-upgrade-method["選擇升級方法"] 在升級 Trident 操作員安裝之前。
+您可以使用 Trident operator 手動或透過 Helm 升級 Astra Trident。您可以從一個 Trident operator 安裝升級到另一個 Trident operator 安裝，也可以從 `tridentctl`安裝升級到 Trident operator 版本。在升級 Trident operator 安裝之前，請先檢閱link:upgrade-trident.html#step-3-select-an-upgrade-method["選擇升級方法"]。
 
 
 
+[[upgrade-a-manual-installation]]
 == 升級手動安裝
 
 您可以從叢集範圍的 Trident 運算子安裝升級到另一個叢集範圍的 Trident 運算子安裝。所有Astra Trident版本21.01及更新版本均使用叢集範圍的運算子。
@@ -58,6 +59,7 @@ kubectl create -f 24.02.0/trident-installer/deploy/<bundle.yaml> -n trident
 
 
 
+[[upgrade-a-helm-installation]]
 == 升級 Helm 安裝
 
 您可以升級 Astra Trident Helm 安裝。
@@ -66,7 +68,7 @@ kubectl create -f 24.02.0/trident-installer/deploy/<bundle.yaml> -n trident
 WARNING: 將Kubernetes叢集從1.24升級至1.25或更新版本、且已安裝Astra Trident時、您必須更新vales.yaml才能設定 `excludePodSecurityPolicy` 至 `true` 或新增 `--set excludePodSecurityPolicy=true` 至 `helm upgrade` 命令、然後才能升級叢集。
 
 .步驟
-. 如果您 link:../trident-get-started/kubernetes-deploy-helm.html#deploy-the-trident-operator-and-install-astra-trident-using-helm["使用 Helm 安裝 Astra Trident"]、您可以使用 `helm upgrade trident netapp-trident/trident-operator --version 100.2402.0` 只需一步即可升級。如果您未新增 Helm repo 或無法使用它來升級：
+. 如果您link:../trident-install/kubernetes-deploy-helm.html#deploy-the-trident-operator-and-install-trident-using-helm["使用 Helm 安裝 Astra Trident"]，可以使用 `helm upgrade trident netapp-trident/trident-operator --version 100.2402.0`一步升級。如果您沒有新增 Helm 倉庫或無法使用它進行升級：
 +
 .. 從下載最新的 Astra Trident 版本 link:https://github.com/NetApp/trident/releases/latest["GitHub的_Assets區段"^]。
 .. 使用 `helm upgrade` 命令位置 `trident-operator-24.02.0.tgz` 反映您要升級的版本。
@@ -86,12 +88,13 @@ NOTE: 如果您在初始安裝期間設定自訂選項（例如指定 Trident �
 
 
 
+[[upgrade-from-a-tridentctl-installation-to-trident-operator]]
 == 從升級 `tridentctl` 安裝至 Trident 操作員
 
 您可以從升級至最新版的Trident運算子 `tridentctl` 安裝：現有的後端和 PVC 將會自動提供使用。
 
 
-NOTE: 在安裝方法之間切換之前、請參閱 link:../trident-get-started/kubernetes-deploy.html#moving-between-installation-methods["在安裝方法之間移動"]。
+NOTE: 在切換安裝方法之前，請先查看 link:../trident-install/kubernetes-deploy.html#moving-between-installation-methods["在安裝方法之間移動"]。
 
 .步驟
 . 下載最新的Astra Trident版本。

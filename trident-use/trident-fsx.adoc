@@ -16,6 +16,7 @@ https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html["Amazon
 
 
 
+[[overview]]
 == 總覽
 
 檔案系統是Amazon FSX的主要資源、類似ONTAP 於內部部署的一個叢集。在每個SVM中、您可以建立一個或多個磁碟區、這些磁碟區是儲存檔案系統中檔案和資料夾的資料容器。有了Amazon FSX for NetApp ONTAP 的功能、Data ONTAP 即可在雲端以託管檔案系統的形式提供支援。新的檔案系統類型稱為* NetApp ONTAP Sing*。
@@ -24,6 +25,7 @@ https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html["Amazon
 
 
 
+[[considerations]]
 == 考量
 
 * SMB Volume：
@@ -42,6 +44,7 @@ NOTE: 如果您要指定 Astra Trident 的 IAM 角色、則可以省略指定 `a
 
 
 
+[[fsx-for-ontap-driver-details]]
 == 適用於 ONTAP 驅動程式詳細資料的 FSX
 
 您可以ONTAP 使用下列驅動程式、將Astra Trident與Amazon FSX for NetApp整合：
@@ -57,6 +60,7 @@ NOTE: 如果您要指定 Astra Trident 的 IAM 角色、則可以省略指定 `a
 
 
 
+[[authentication]]
 == 驗證
 
 Astra Trident提供兩種驗證模式。
@@ -79,6 +83,7 @@ WARNING: Astra Trident希望以 `vsadmin` SVM使用者或具有相同角色之�
 
 
 
+[[cloud-identity-for-eks]]
 == EKS 的雲端身分識別
 
 雲端身分識別可讓 Kubernetes Pod 以 AWS IAM 角色的身分驗證、而非提供明確的 AWS 認證、來存取 AWS 資源。
@@ -143,6 +148,7 @@ tridentctl install --cloud-provider=$CP --cloud-identity="$CI" -n trident
 
 
 
+[[find-more-information]]
 == 如需詳細資訊、請參閱
 
 * https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/what-is-fsx-ontap.html["Amazon FSX for NetApp ONTAP 的支援文件"^]

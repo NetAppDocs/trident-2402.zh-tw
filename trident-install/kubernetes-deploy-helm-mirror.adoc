@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: trident-get-started/kubernetes-deploy-helm-mirror.html 
+permalink: trident-install/kubernetes-deploy-helm-mirror.html 
 keywords: deploy, astra trident, operator, helm, helm chart, configuration, values, offline, air gap, gap, registry 
 summary: 您可以部署Trident運算子、並使用Helm安裝Astra Trident。此程序適用於將Astra Trident所需的容器映像儲存在私有登錄中的安裝。 
 ---
@@ -16,6 +16,7 @@ summary: 您可以部署Trident運算子、並使用Helm安裝Astra Trident。�
 
 
 
+[[critical-information-about-astra-trident-24-02]]
 == Astra Trident 24.02 的重要資訊
 
 *您必須閱讀下列有關Astra Trident的重要資訊。*
@@ -33,14 +34,15 @@ summary: 您可以部署Trident運算子、並使用Helm安裝Astra Trident。�
 ====
 
 
+[[deploy-the-trident-operator-and-install-astra-trident-using-helm]]
 == 部署Trident操作員、並使用Helm安裝Astra Trident
 
 使用Trident link:https://artifacthub.io/packages/helm/netapp-trident/trident-operator["掌舵表"^] 您可以部署Trident運算子、並在單一步驟中安裝Trident。
 
-檢閱 link:../trident-get-started/kubernetes-deploy.html["安裝總覽"] 為了確保您符合安裝先決條件、並為您的環境選擇正確的安裝選項。
+檢查 link:kubernetes-deploy.html["安裝總覽"] 以確保滿足安裝先決條件並為您的環境選擇了正確的安裝選項。
 
 .開始之前
-此外 link:../trident-get-started/kubernetes-deploy.html#before-you-deploy["部署先決條件"] 您的需求 link:https://v3.helm.sh/["Helm版本3"^]。
+除了 link:kubernetes-deploy.html#before-you-begin["部署先決條件"] 之外，您還需要 link:https://v3.helm.sh/["Helm版本3"^]。
 
 .步驟
 . 新增Astra Trident Helm儲存庫：
@@ -80,6 +82,7 @@ NOTE: 如果您已經為Trident建立命名空間 `--create-namespace` 參數不
 
 
 
+[[pass-configuration-data-during-install]]
 == 在安裝期間傳遞組態資料
 
 安裝期間有兩種傳遞組態資料的方法：
@@ -106,6 +109,7 @@ helm install <name> netapp-trident/trident-operator --version 100.2402.0  --crea
 ----
 
 
+[[configuration-options]]
 == 組態選項
 
 此表格和 `values.yaml` 檔案是 Helm 圖表的一部分、提供按鍵清單及其預設值。

@@ -16,6 +16,7 @@ summary: 瞭解 Azure NetApp Files 的 NFS 和 SMB 後端組態選項、並檢�
 
 
 
+[[backend-configuration-options]]
 == 後端組態選項
 
 Astra Trident 使用您的後端組態（子網路、虛擬網路、服務層級和位置）、在所要求位置的可用容量集區上建立 Azure NetApp Files Volume 、並符合所要求的服務層級和子網路。
@@ -111,6 +112,7 @@ NOTE: 如需網路功能的詳細資訊、請參閱 link:https://docs.microsoft.
 
 
 
+[[required-permissions-and-resources]]
 === 必要的權限與資源
 
 如果您在建立 PVC 時收到「找不到容量集區」錯誤、您的應用程式註冊可能沒有相關的必要權限和資源（子網路、虛擬網路、容量集區）。如果啟用偵錯、Astra Trident會記錄在建立後端時探索到的Azure資源。確認使用的角色是否適當。
@@ -140,6 +142,7 @@ NOTE: 如需網路功能的詳細資訊、請參閱 link:https://docs.microsoft.
 |===
 
 
+[[volume-provisioning]]
 === Volume資源配置
 
 您可以在組態檔的特殊區段中指定下列選項、以控制預設的Volume資源配置。請參閱 <<組態範例>> 以取得詳細資料。
@@ -168,6 +171,7 @@ SMB磁碟區已忽略。 | ""（預覽功能、訂閱時需要白名單）
 |===
 
 
+[[example-configurations]]
 == 組態範例
 
 下列範例顯示基本組態、讓大部分參數保留預設值。這是定義後端最簡單的方法。
@@ -335,12 +339,14 @@ storage:
 ====
 
 
+[[storage-class-definitions]]
 == 儲存類別定義
 
 以下內容 `StorageClass` 定義請參閱上述儲存資源池。
 
 
 
+[[example-definitions-using-parameter-selector-field]]
 === 使用的範例定義 `parameter.selector` 欄位
 
 使用 `parameter.selector` 您可以為每個項目指定 `StorageClass` 用於裝載磁碟區的虛擬集區。該磁碟區會在所選的資源池中定義各個層面。
@@ -376,6 +382,7 @@ allowVolumeExpansion: true
 ----
 
 
+[[example-definitions-for-smb-volumes]]
 === SMB磁碟區的定義範例
 
 使用 `nasType`、 `node-stage-secret-name`和  `node-stage-secret-namespace`、您可以指定SMB磁碟區、並提供所需的Active Directory認證資料。
@@ -437,6 +444,7 @@ NOTE: `nasType: smb` 支援SMB磁碟區的集區篩選器。 `nasType: nfs` 或 
 
 
 
+[[create-the-backend]]
 == 建立後端
 
 建立後端組態檔之後、請執行下列命令：

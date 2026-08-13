@@ -16,6 +16,7 @@ summary: '後端定義了Astra Trident與儲存系統之間的關係。它告訴
 
 
 
+[[tridentbackendconfig]]
 == `TridentBackendConfig`
 
 `TridentBackendConfig` (`tbc`、 `tbconfig`、 `tbackendconfig`）是前端、命名式CRD、可讓您使用管理Astra Trident後端 `kubectl`。Kubernetes與儲存管理員現在可以直接透過Kubernetes CLI建立及管理後端、而無需使用專屬的命令列公用程式 (`tridentctl`）。
@@ -72,6 +73,7 @@ TIP: 以建立的後端 `tridentctl` 沒有關聯的 `TridentBackendConfig` 物�
 
 
 
+[[steps-overview]]
 == 步驟總覽
 
 若要使用建立新的後端 `kubectl`、您應該執行下列步驟：
@@ -84,6 +86,7 @@ TIP: 以建立的後端 `tridentctl` 沒有關聯的 `TridentBackendConfig` 物�
 
 
 
+[[step-1-create-a-kubernetes-secret]]
 == 步驟1：建立Kubernetes機密
 
 建立包含後端存取認證的秘密。這是每個儲存服務/平台所獨有的功能。範例如下：
@@ -187,6 +190,7 @@ CHAP目標啟動器機密。如果useCHAP=true則需要。適用於 `ontap-san` 
 
 
 
+[[step-2-create-the-tridentbackendconfig-cr]]
 == 步驟2：建立 `TridentBackendConfig` CR
 
 您現在已準備好建立 `TridentBackendConfig` CR.在此範例中、使用的後端 `ontap-san` 驅動程式是使用建立的 `TridentBackendConfig` 物件如下所示：
@@ -213,6 +217,7 @@ spec:
 ----
 
 
+[[step-3-verify-the-status-of-the-tridentbackendconfig-cr]]
 == 步驟3：確認的狀態 `TridentBackendConfig` CR
 
 現在您已經建立了 `TridentBackendConfig` 您可以驗證狀態。請參閱下列範例：
@@ -243,6 +248,7 @@ backend-tbc-ontap-san   ontap-san-backend     8d24fce7-6f60-4d4a-8ef6-bab2699e6a
 
 
 
+[[optional-step-4-get-more-details]]
 == （選用）步驟4：取得更多詳細資料
 
 您可以執行下列命令來取得有關後端的詳細資訊：

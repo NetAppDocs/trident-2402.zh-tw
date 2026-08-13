@@ -16,6 +16,7 @@ summary: 瞭Cloud Volumes Service 解如何使用提供的範例組態、將適�
 
 
 
+[[google-cloud-driver-details]]
 == Google Cloud 驅動程式詳細資料
 
 Astra Trident 提供 `gcp-cvs` 與叢集通訊的驅動程式。支援的存取模式包括： _ReadWriteOnce_ （ rwo ）、 _ReadOnlyMany （ ROX ）、 _ReadWriteMany （ rwx ）、 _ReadWriteOncePod （ RWOP_ ）。
@@ -37,18 +38,19 @@ Rwo 、 ROX 、 rwx 、 RWOP
 |===
 
 
+[[learn-about-astra-trident-support-for-cloud-volumes-service-for-google-cloud]]
 == 深入瞭解Astra Trident對Cloud Volumes Service Google Cloud的支援
 
-Astra Trident可在Cloud Volumes Service 兩個地方建立一個不二的資料區 link:https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-types["服務類型"^]：
+Astra Trident 可以透過以下兩種方式之一建立 Cloud Volumes Service 磁碟區link:https://docs.cloud.google.com/netapp/volumes/docs/discover/overview["服務類型"^]：
 
-* * CVS效能*：預設的Astra Trident服務類型。這種效能最佳化的服務類型最適合重視效能的正式作業工作負載。CVS效能服務類型是一種硬體選項、可支援最小100 GiB大小的磁碟區。您可以選擇其中一項 link:https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-levels#service_levels_for_the_cvs-performance_service_type["三個服務層級"^]：
+* *CVS-Performance*：Astra Trident 的預設服務類型。這種效能最佳化型服務類型最適合注重效能的生產工作負載。CVS-Performance 服務類型是一種硬體選項，支援最小 100 GiB 的磁碟區。您可以選擇以下選項之一link:https://docs.cloud.google.com/netapp/volumes/docs/discover/overview["三個服務層級"^]：
 +
 ** `standard`
 ** `premium`
 ** `extreme`
 
 
-* * CVS：CVS服務類型提供高分區可用度、但效能等級僅限於中度。CVS服務類型是一種軟體選項、使用儲存資源池來支援小至1 GiB的磁碟區。儲存資源池最多可包含50個磁碟區、其中所有磁碟區都會共用資源池的容量和效能。您可以選擇其中一項 link:https://cloud.google.com/architecture/partners/netapp-cloud-volumes/service-levels#service_levels_for_the_cvs_service_type["兩種服務層級"^]：
+* *CVS*：CVS 服務類型提供高區域可用性，但效能水準有限或中等。CVS 服務類型是一種軟體選項，使用儲存池來支援小至 1 GiB 的磁碟區。儲存池最多可包含 50 個磁碟區，所有磁碟區共用集區的容量和效能。您可以選擇以下選項之一link:https://docs.cloud.google.com/netapp/volumes/docs/discover/overview["兩種服務層級"^]：
 +
 ** `standardsw`
 ** `zoneredundantstandardsw`
@@ -57,7 +59,7 @@ Astra Trident可在Cloud Volumes Service 兩個地方建立一個不二的資料
 
 
 .您需要的產品
-以設定及使用 https://cloud.netapp.com/cloud-volumes-service-for-gcp?utm_source=NetAppTrident_ReadTheDocs&utm_campaign=Trident["適用於 Google Cloud Cloud Volumes Service"^] 後端、您需要下列項目：
+要設定和使用 https://www.netapp.com/google-cloud/netapp-volumes/["適用於 Google Cloud Cloud Volumes Service"^]後端，您需要以下元件：
 
 * Google Cloud帳戶已設定NetApp Cloud Volumes Service 功能
 * Google Cloud帳戶的專案編號
@@ -67,6 +69,7 @@ Astra Trident可在Cloud Volumes Service 兩個地方建立一個不二的資料
 
 
 
+[[backend-configuration-options]]
 == 後端組態選項
 
 每個後端都會在單一Google Cloud區域中配置磁碟區。若要在其他區域建立磁碟區、您可以定義其他後端。
@@ -149,6 +152,7 @@ CVS預設為「標準」。
 |===
 
 
+[[volume-provisioning-options]]
 == Volume資源配置選項
 
 您可以在中控制預設的Volume資源配置 `defaults` 組態檔的一節。
@@ -177,6 +181,7 @@ CVS服務類型並未設定預設值、但至少需要1 GiB。
 |===
 
 
+[[cvs-performance-service-type-examples]]
 == CVS效能服務類型範例
 
 下列範例提供CVS效能服務類型的範例組態。
@@ -390,6 +395,7 @@ storage:
 ====
 
 
+[[storage-class-definitions]]
 === 儲存類別定義
 
 下列StorageClass定義適用於虛擬集區組態範例。使用 `parameters.selector`、您可以為每個StorageClass指定用於裝載磁碟區的虛擬集區。該磁碟區會在所選的資源池中定義各個層面。
@@ -460,6 +466,7 @@ allowVolumeExpansion: true
 
 
 
+[[cvs-service-type-examples]]
 == CVS服務類型範例
 
 下列範例提供CVS服務類型的範例組態。
@@ -582,6 +589,7 @@ serviceLevel: Standardsw
 ====
 
 
+[[whats-next]]
 == 接下來呢？
 
 建立後端組態檔之後、請執行下列命令：

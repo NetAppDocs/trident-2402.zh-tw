@@ -22,7 +22,7 @@ NOTE: 如需 Docker 、請參閱 link:../trident-docker/deploy-docker.html["適�
 Astra Trident 提供多種安裝方法和模式、針對各種環境和組織進行最佳化。
 
 [role="quick-margin-para"]
-link:../trident-get-started/kubernetes-deploy.html["安裝Astra Trident"]
+link:../trident-install/kubernetes-deploy.html["安裝Astra Trident"]
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"] 準備工作節點
 [role="quick-margin-para"]
@@ -57,6 +57,7 @@ link:../trident-use/vol-provision.html["配置 Volume"]
 
 
 
+[[whats-next]]
 == 接下來呢？
 
 您現在可以新增其他後端、管理儲存類別、管理後端、以及執行 Volume 作業。

@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: trident-get-started/kubernetes-deploy-tridentctl.html 
+permalink: trident-install/kubernetes-deploy-tridentctl.html 
 keywords: deploy, astra trident, methods, tridentctl, windows 
 summary: '您可以使用安裝Astra Trident `tridentctl`。此程序適用於將Astra Trident所需的容器映像儲存在私有登錄中或不儲存在私有登錄中的安裝。' 
 ---
@@ -16,6 +16,7 @@ summary: '您可以使用安裝Astra Trident `tridentctl`。此程序適用於�
 
 
 
+[[critical-information-about-astra-trident-24-02]]
 == Astra Trident 24.02 的重要資訊
 
 *您必須閱讀下列有關Astra Trident的重要資訊。*
@@ -33,12 +34,13 @@ summary: '您可以使用安裝Astra Trident `tridentctl`。此程序適用於�
 ====
 
 
+[[install-astra-trident-using-tridentctl]]
 == 使用安裝Astra Trident `tridentctl`
 
-檢閱 link:../trident-get-started/kubernetes-deploy.html["安裝總覽"] 為了確保您符合安裝先決條件、並為您的環境選擇正確的安裝選項。
+檢查 link:kubernetes-deploy.html["安裝總覽"] 以確保滿足安裝先決條件並為您的環境選擇了正確的安裝選項。
 
 .開始之前
-在開始安裝之前、請先登入Linux主機、然後確認它正在管理正常運作的 link:requirements.html["支援的Kubernetes叢集"^] 而且您擁有必要的權限。
+在開始安裝之前，請登入 Linux 主機並驗證它是否正在管理運作中的 link:../trident-get-started/requirements.html["支援的Kubernetes叢集"^]，以及您是否擁有必要的權限。
 
 
 NOTE: 使用OpenShift、使用 `oc` 而非 `kubectl` 在以下所有範例中、請先執行*系統：admin*登入 `oc login -u system:admin` 或 `oc login -u kube-admin`。
@@ -69,6 +71,7 @@ kubectl run -i --tty ping --image=busybox --restart=Never --rm -- \
 ====
 
 
+[[step-1-download-the-trident-installer-package]]
 == 步驟1：下載Trident安裝程式套件
 
 Astra Trident安裝程式套件會建立Trident pod、設定用來維持其狀態的CRD物件、並初始化csi sidecar以執行資源配置和將磁碟區附加至叢集主機等動作。從下載並擷取Trident安裝程式的最新版本 link:https://github.com/NetApp/trident/releases/latest["GitHub的_Assets區段"^]。請使用<trident-installer-XX.XX.X.tar.gz> 您所選的Astra Trident版本來更新範例中的_SUR__。
@@ -81,6 +84,7 @@ cd trident-installer
 ----
 
 
+[[step-2-install-astra-trident]]
 == 步驟 2 ：安裝 Astra Trident
 
 執行、在所需的命名空間中安裝Astra Trident `tridentctl install` 命令。您可以新增其他引數來指定映像登錄位置。
@@ -134,12 +138,14 @@ INFO Trident installation succeeded.
 ----
 
 
+[[verify-the-installation]]
 == 驗證安裝
 
 您可以使用Pod建立狀態或來驗證安裝 `tridentctl`。
 
 
 
+[[using-pod-creation-status]]
 === 使用Pod建立狀態
 
 您可以檢閱建立的Pod狀態、確認是否已完成Astra Trident安裝：
@@ -153,10 +159,11 @@ trident-controller-679648bd45-cv2mx   6/6     Running   0          5m29s
 trident-node-linux-vgc8n              2/2     Running   0          5m29s
 ----
 
-NOTE: 如果安裝程式未成功完成或 `trident-controller-<generated id>` (`trident-csi-<generated id>` 在23.01之前的版本中）沒有*執行中*的狀態、表示平台尚未安裝。使用 `-d` 至  link:../troubleshooting.html#troubleshooting-an-unsuccessful-trident-deployment-using-tridentctl["開啟偵錯模式"] 並疑難排解問題。
+NOTE: 如果安裝程式未成功完成或 `trident-controller-<generated id>` (`trident-csi-<generated id>`在 23.01 之前的版本中未顯示 *Running* 狀態，則表示平台未安裝。請使用 `-d`來link:../troubleshooting.html#unsuccessful-trident-deployment-using-tridentctl["開啟偵錯模式"]並排查問題。
 
 
 
+[[using-tridentctl]]
 === 使用 `tridentctl`
 
 您可以使用 `tridentctl` 檢查安裝的Astra Trident版本。
@@ -173,6 +180,7 @@ NOTE: 如果安裝程式未成功完成或 `trident-controller-<generated id>` (
 ----
 
 
+[[sample-configurations]]
 == 組態範例
 
 下列範例提供使用安裝 Astra Trident 的組態範例 `tridentctl`。
@@ -190,7 +198,7 @@ tridentctl install --windows -n trident
 .強制分離
 [%collapsible]
 ====
-如需強制分離的詳細資訊、請參閱 link:..trident-get-started/kubernetes-customize-deploy.html["自訂Trident操作員安裝"]。
+如需強制分離的詳細資訊，請參閱link:../trident-install/kubernetes-customize-deploy.html["自訂Trident操作員安裝"]。
 
 [listing]
 ----

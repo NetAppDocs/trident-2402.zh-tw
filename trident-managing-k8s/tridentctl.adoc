@@ -16,6 +16,7 @@ summary: 深入瞭解tridentctl、這是一個命令列公用程式、可讓您�
 
 
 
+[[commands-and-global-flags]]
 == 命令和全域旗標
 
 您可以執行 `tridentctl help` 取得的可用命令清單 `tridentctl` 或附加 `--help` 標記至任何命令、以取得該特定命令的選項和旗標清單。
@@ -70,10 +71,12 @@ WARNING: Trident REST介面可設定為偵聽、僅適用於127.0.0.1（適用�
 ====
 
 
+[[command-options-and-flags]]
 == 命令選項和旗標
 
 
 
+[[create]]
 === 建立
 
 使用 `create` 命令以新增資源至Astra Trident。
@@ -85,6 +88,7 @@ WARNING: Trident REST介面可設定為偵聽、僅適用於127.0.0.1（適用�
 
 
 
+[[delete]]
 === 刪除
 
 使用 `delete` 從Astra Trident移除一或多個資源的命令。
@@ -99,6 +103,7 @@ WARNING: Trident REST介面可設定為偵聽、僅適用於127.0.0.1（適用�
 
 
 
+[[get]]
 === 取得
 
 使用 `get` 從Astra Trident取得一或多個資源的命令。
@@ -116,6 +121,7 @@ WARNING: Trident REST介面可設定為偵聽、僅適用於127.0.0.1（適用�
 
 
 
+[[images]]
 === 映像
 
 使用 `images` 用於列印 Astra Trident 所需容器影像表格的旗標。
@@ -128,6 +134,7 @@ WARNING: Trident REST介面可設定為偵聽、僅適用於127.0.0.1（適用�
 
 
 
+[[import-volume]]
 === 匯入Volume
 
 使用 `import volume` 將現有磁碟區匯入Astra Trident的命令。
@@ -142,6 +149,7 @@ WARNING: Trident REST介面可設定為偵聽、僅適用於127.0.0.1（適用�
 
 
 
+[[install]]
 === 安裝
 
 使用 `install` 安裝Astra Trident的旗標。
@@ -169,6 +177,7 @@ WARNING: Trident REST介面可設定為偵聽、僅適用於127.0.0.1（適用�
 
 
 
+[[logs]]
 === 記錄
 
 使用 `logs` 用於列印Astra Trident記錄的旗標。
@@ -185,6 +194,7 @@ WARNING: Trident REST介面可設定為偵聽、僅適用於127.0.0.1（適用�
 
 
 
+[[send]]
 === 傳送
 
 使用 `send` 從Astra Trident傳送資源的命令。
@@ -196,6 +206,7 @@ WARNING: Trident REST介面可設定為偵聽、僅適用於127.0.0.1（適用�
 
 
 
+[[uninstall]]
 === 解除安裝
 
 使用 `uninstall` 解除安裝Astra Trident的旗標。
@@ -208,6 +219,7 @@ WARNING: Trident REST介面可設定為偵聽、僅適用於127.0.0.1（適用�
 
 
 
+[[update]]
 === 更新
 
 使用 `update` 命令以修改 Astra Trident 中的資源。
@@ -219,6 +231,7 @@ WARNING: Trident REST介面可設定為偵聽、僅適用於127.0.0.1（適用�
 
 
 
+[[update-backend-state]]
 === 更新後端狀態
 
 使用 `update backend state` 暫停或恢復後端作業的命令。
@@ -238,6 +251,7 @@ WARNING: Trident REST介面可設定為偵聽、僅適用於127.0.0.1（適用�
 
 
 
+[[version]]
 === 版本
 
 使用 `version` 用於列印版本的旗標 `tridentctl` 以及執行中的Trident服務。

@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: trident-get-started/kubernetes-deploy-operator-mirror.html 
+permalink: trident-install/kubernetes-deploy-operator-mirror.html 
 keywords: deploy, astra trident, methods, operator, tridentctl, mirrored, registry, registries 
 summary: 您可以手動部署Trident運算子來安裝Astra Trident。此程序適用於將Astra Trident所需的容器映像儲存在私有登錄中的安裝。 
 ---
@@ -16,6 +16,7 @@ summary: 您可以手動部署Trident運算子來安裝Astra Trident。此程序
 
 
 
+[[critical-information-about-astra-trident-24-02]]
 == Astra Trident 24.02 的重要資訊
 
 *您必須閱讀下列有關Astra Trident的重要資訊。*
@@ -33,12 +34,13 @@ summary: 您可以手動部署Trident運算子來安裝Astra Trident。此程序
 ====
 
 
+[[manually-deploy-the-trident-operator-and-install-trident]]
 == 手動部署Trident運算子並安裝Trident
 
-檢閱 link:../trident-get-started/kubernetes-deploy.html["安裝總覽"] 為了確保您符合安裝先決條件、並為您的環境選擇正確的安裝選項。
+檢查 link:kubernetes-deploy.html["安裝總覽"] 以確保滿足安裝先決條件並為您的環境選擇了正確的安裝選項。
 
 .開始之前
-登入Linux主機、驗證其是否正在管理正常運作的和 link:requirements.html["支援的Kubernetes叢集"^] 而且您擁有必要的權限。
+登入 Linux 主機，並驗證它是否正在管理一個正常運作的 link:../trident-get-started/requirements.html["支援的Kubernetes叢集"^]，以及您是否擁有必要的權限。
 
 
 NOTE: 使用OpenShift、使用 `oc` 而非 `kubectl` 在以下所有範例中、請先執行*系統：admin*登入 `oc login -u system:admin` 或 `oc login -u kube-admin`。
@@ -69,6 +71,7 @@ kubectl run -i --tty ping --image=busybox --restart=Never --rm -- \
 ====
 
 
+[[step-1-download-the-trident-installer-package]]
 === 步驟1：下載Trident安裝程式套件
 
 Astra Trident安裝程式套件包含部署Trident操作員及安裝Astra Trident所需的一切。從下載並擷取Trident安裝程式的最新版本 link:https://github.com/NetApp/trident/releases/latest["GitHub的_Assets區段"^]。
@@ -81,6 +84,7 @@ cd trident-installer
 ----
 
 
+[[step-2-create-the-tridentorchestrator-crd]]
 === 步驟2：建立 `TridentOrchestrator` 客戶需求日
 
 建立 `TridentOrchestrator` 自訂資源定義（CRD）。您將建立 `TridentOrchestrator` 稍後再自訂資源。請使用中適當的CRD Y反 洗錢版本 `deploy/crds` 以建立 `TridentOrchestrator` 客戶需求日：
@@ -91,6 +95,7 @@ kubectl create -f deploy/crds/<VERSION>.yaml
 ----
 
 
+[[step-3-update-the-registry-location-in-the-operator]]
 === 步驟3：更新操作員中的登錄位置
 
 在中 `/deploy/operator.yaml`、更新 `image: docker.io/netapp/trident-operator:24.02.0` 以反映映像登錄的位置。您的 link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和csi影像"] 可以位於一個登錄或不同的登錄中、但所有的SCSI映像都必須位於同一個登錄中。例如：
@@ -101,6 +106,7 @@ kubectl create -f deploy/crds/<VERSION>.yaml
 
 
 
+[[step-4-deploy-the-trident-operator]]
 === 步驟 4 ：部署 Trident 運算子
 
 Astra Trident安裝程式提供一個套件檔案、可用來安裝運算子及建立相關的物件。套裝組合檔案是使用預設組態部署操作員及安裝Astra Trident的簡易方法。
@@ -154,6 +160,7 @@ IMPORTANT: Kubernetes叢集中只應有*一個運算子執行個體*。請勿建
 
 
 
+[[step-5-update-the-image-registry-location-in-the-tridentorchestrator]]
 === 步驟 5 ：更新中的映像登錄位置 `TridentOrchestrator`
 
 您的 link:../trident-get-started/requirements.html#container-images-and-corresponding-kubernetes-versions["Trident和csi影像"] 可以位於一個登錄或不同的登錄中、但所有的SCSI映像都必須位於同一個登錄中。更新 `deploy/crds/tridentorchestrator_cr.yaml` 根據登錄組態新增額外的位置規格。
@@ -183,6 +190,7 @@ tridentImage: "<your-registry>/netapp/trident:24.02.0"
 ====
 
 
+[[step-6-create-the-tridentorchestrator-and-install-trident]]
 === 步驟 6 ：建立 `TridentOrchestrator` 並安裝Trident
 
 您現在可以建立 `TridentOrchestrator` 並安裝Astra Trident。您也可以選擇進一步 link:kubernetes-customize-deploy.html["自訂您的Trident安裝"] 使用中的屬性 `TridentOrchestrator` 規格下列範例顯示Trident與csi映像位於不同登錄中的安裝。
@@ -235,12 +243,14 @@ Events:
 ----
 
 
+[[verify-the-installation]]
 == 驗證安裝
 
 驗證安裝的方法有多種。
 
 
 
+[[using-tridentorchestrator-status]]
 === 使用 `TridentOrchestrator` 狀態
 
 狀態 `TridentOrchestrator` 指出安裝是否成功、並顯示安裝的Trident版本。安裝期間的狀態 `TridentOrchestrator` 變更來源 `Installing` 至 `Installed`。如果您觀察到 `Failed` 狀態、而且營運者無法自行恢復、 link:../troubleshooting.html["檢查記錄"]。
@@ -275,6 +285,7 @@ Astra Trident ；操作人員將自動嘗試從此狀態恢復。如果此狀態
 |===
 
 
+[[using-pod-creation-status]]
 === 使用Pod建立狀態
 
 您可以檢閱建立的Pod狀態、確認是否已完成Astra Trident安裝：
@@ -292,6 +303,7 @@ trident-operator-766f7b8658-ldzsv          1/1     Running   0           3m
 ----
 
 
+[[using-tridentctl]]
 === 使用 `tridentctl`
 
 您可以使用 `tridentctl` 檢查安裝的Astra Trident版本。
