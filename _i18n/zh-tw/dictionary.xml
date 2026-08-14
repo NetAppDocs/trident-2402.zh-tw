@@ -4004,8 +4004,6 @@ ONTAP 後端的 Amazon FSX 需要此參數。</block>
   <block id="87a522ecb9df14bf978f6f1da8a654a8" category="list-text">您無法藉由移除來撤銷對來源PVc的存取權<block ref="287f26e3328f9ac0f3f4da2cdaddd3e2" prefix=" " category="inline-code"></block> 或<block ref="11650d25d20af47978d85fd6e19c89aa" prefix=" " category="inline-code"></block> 註釋或刪除<block ref="d6995f631b22fb3f8e94aad1b40d1280" prefix=" " category="inline-code"></block> CR.若要撤銷存取權、您必須刪除從屬的PVc。</block>
   <block id="3908892c437778f8b161a2ca006782cd" category="list-text">在從屬磁碟區上無法執行快照、複製和鏡射。</block>
   <block id="8ff961668c6784e84b25c265cbb629d7" category="paragraph">若要深入瞭解跨命名空間Volume存取：</block>
-  <block id="f1cfea5f1444de607dfa549b3aa57010" category="inline-link-macro">在命名空間之間共用磁碟區：歡迎使用跨命名空間磁碟區存取</block>
-  <block id="2780f690b7670efc296ac19ef3029d0c" category="list-text">請造訪 <block ref="b0d29f1b2abb2cc552e4cc47177582ef" category="inline-link-macro-rx"></block>。</block>
   <block id="821b0ad941ad2559ef18eb8de56a470e" category="summary">Kubernetes叢集中的所有工作節點都必須能夠掛載您已為Pod配置的磁碟區。如果您使用的是其中一個後端的ONTAP-NAS、ONTAP-NAS-節約、ONTAP-NAS-Flexgroup驅動程式、則您的工作節點需要NFS工具。否則他們需要iSCSI工具。</block>
   <block id="cedfb4d575651cbf026e87084c68731c" category="paragraph">Kubernetes叢集中的所有工作節點都必須能夠掛載您已為Pod配置的磁碟區。若要準備工作節點、您必須根據您選擇的驅動程式來安裝 NFS 、 iSCSI 或 NVMe / TCP 工具。</block>
   <block id="262309361fe5b6dcda3a2eae08a48c2d" category="section-title">選擇適當的工具</block>
@@ -4477,7 +4475,6 @@ ONTAP 後端的 Amazon FSX 需要此參數。</block>
   <block id="fc2e66218fd84f948c8422e9281248bb" category="paragraph">安裝和升級 Astra Trident 的眾多<block ref="2b6c752c2a0adaf915d24df45e6dabc3" category="inline-link-macro-rx"></block>之一是能夠自動處理 Astra Trident 和 Kubernetes 物件，而不會中斷現有掛載的磁碟區。如此一來，Astra Trident 即可支援零停機升級，或<block ref="c0fb6b6f12bb8ae805a97690328ec023" category="inline-link-macro-rx"></block>。具體而言，Trident operator 與 Kubernetes 叢集通訊以：</block>
   <block id="39b249736124fb00d653108623277947" category="admonition">有關 Kubernetes 叢集上 Astra Trident 架構的詳細資訊，請參閱<block ref="d9cc95c35405d0ba55bb1c80379b860b" category="inline-link-macro-rx"></block>。</block>
   <block id="db7a344a2f782e818bfa08cc874be2d3" category="paragraph">您可以使用 Trident operator 手動或透過 Helm 升級 Astra Trident。您可以從一個 Trident operator 安裝升級到另一個 Trident operator 安裝，也可以從<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>安裝升級到 Trident operator 版本。在升級 Trident operator 安裝之前，請先檢閱<block ref="ad3ae3ba576f54a9ed86202bbeedc293" category="inline-link-macro-rx"></block>。</block>
-  <block id="fa6a2899788eb314dacfba8d3c7aeff3" category="list-text">如果您<block ref="9730f6b830d650fd0abcf884e4180e07" category="inline-link-macro-rx"></block>，可以使用<block ref="f8055407f6b06e8c86fe98fdbd160c87" prefix=" " category="inline-code"></block>一步升級。如果您沒有新增 Helm 倉庫或無法使用它進行升級：</block>
   <block id="8edaa40191fd981b339b65738ae96ecc" category="admonition">在切換安裝方法之前，請先查看 <block ref="d9897dfd3f891279098b72584e2caa99" category="inline-link-macro-rx"></block>。</block>
   <block id="8fec8c5961acee22b528da59b1a909a9" category="paragraph">通常情況下，您應該使用與初始安裝相同的方法進行升級，但您也可以<block ref="be81b6c3db35f66680ab7fc08ff1a8b2" category="inline-link-macro-rx"></block>。升級 Astra Trident 有兩種選項。</block>
   <block id="7ba0dd834b932c7125765a293d38c4f6" category="paragraph">在使用<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block>進行升級之前，請先檢查<block ref="ad3ae3ba576f54a9ed86202bbeedc293" category="inline-link-macro-rx"></block>。</block>
@@ -4496,4 +4493,7 @@ ONTAP 後端的 Amazon FSX 需要此參數。</block>
   <block id="9502f88fbe245a8b7aaf0d7523fd74d1" category="cell">啟用 LUKS 加密。請參閱 <block ref="569f9f91cdcc19909b8acbf6f423daf7" category="inline-link-macro-rx"></block>。僅限 SAN。</block>
   <block id="5460ecbb6371c1df42df4a9c16a07c32" category="list-text">使用下列方法之一部署 Astra Trident <block ref="9f5304e884de68405d3f7d425674cf34" category="inline-link-macro-rx"></block>。</block>
   <block id="3505f295d6a44375d99670b663949ca1" category="paragraph">使用 <block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> 公用程式，您可以執行 <block ref="b5eda0a74558a342cf659187f06f746f" prefix=" " category="inline-code"></block> 命令來取得從屬磁碟區。如需詳細資訊，請參閱 link:../trident-managing-k8s/tridentctl.html<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix="[" category="inline-code"></block> 命令和選項]。</block>
+  <block id="ff0d92cc80e14b257375f87a0306ab8c" category="list-text">如果您<block ref="0d686e3d2fd8a83c53781f8faf92011d" category="inline-link-macro-rx"></block>，可以使用<block ref="f8055407f6b06e8c86fe98fdbd160c87" prefix=" " category="inline-code"></block>一步升級。如果您沒有新增 Helm 倉庫或無法使用它進行升級：</block>
+  <block id="96e1384807331548bf745acde0fe1b73" category="inline-link-macro">NetAppTV</block>
+  <block id="00ce2a838361cbe2731edcce256f7933" category="list-text">觀看 <block ref="393cda30e9ed59b399472768b05fff9a" category="inline-link-macro-rx"></block> 上的示範影片。</block>
 </blocks>
